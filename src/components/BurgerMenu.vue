@@ -101,7 +101,7 @@ export default {
 
     @media (max-width: 1240px) {
         .burger-menu__list {
-            margin-top: 130px;
+            margin-top: 110px;
         }
     }
 
@@ -117,7 +117,7 @@ export default {
         }
 
         .burger-menu__list {
-            margin-top: 110px;
+            margin-top: 100px;
         }
     }
 
