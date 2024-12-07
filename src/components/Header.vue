@@ -13,7 +13,7 @@ export default {
 
 <template>
     <header class="header g-wrapper">
-        <a href="#" class="header__logo">QuePro</a>
+        <span class="header__logo"><a href="#">QuePro</a></span>
         <nav>
             <NavigationList class="header__list"/>
             <BurgerMenu class="header__burger"/>
@@ -33,7 +33,7 @@ export default {
         height: 50px;
     }
 
-    .header__logo {
+    .header__logo a{
         color: var(--color-text-primary);
 
         font-family: var(--montserrat);
