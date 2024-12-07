@@ -6,13 +6,14 @@ export default {
     components: {
         NavigationList,
     },
+    data() {
+        return {
+            isOpen: false,
+        }
+    },
     methods: {
         toggleMenu() {
-            const burgerMenuButton = document.querySelector('.burger-menu__button');
-            burgerMenuButton.classList.toggle('burger-menu__button--active');
-
-            const burgerMenuListWrapper = document.querySelector('.burger-menu__list-wrapper');
-            burgerMenuListWrapper.classList.toggle('burger-menu__list-wrapper--active');
+            this.isOpen = !this.isOpen;
         },
     },
 }
@@ -20,10 +21,10 @@ export default {
 
 <template>
     <div class="burger-menu">
-        <div class="burger-menu__list-wrapper">
+        <div :class="['burger-menu__list-wrapper', {'burger-menu__list-wrapper--active': isOpen}]">
             <NavigationList class="burger-menu__list g-wrapper"/>
         </div>
-        <div @click="toggleMenu" class="burger-menu__button">
+        <div @click="toggleMenu" :class="['burger-menu__button', {'burger-menu__button--active': isOpen}]">
             <span></span>
             <span></span>
             <span></span>
