@@ -8,11 +8,27 @@ export default {
         BurgerMenu,
         NavigationList,
     },
+    methods: {
+        handleScroll() {
+            this.isScrolled = window.scrollY > 30;
+        }
+    },
+    data() {
+        return {
+            isScrolled: false,
+        }
+    },
+    mounted() {
+        window.addEventListener('scroll', this.handleScroll);
+    },
+    destroyed() {
+        window.removeEventListener('scroll', this.handleScroll);
+    },
 };
 </script>
 
 <template>
-    <header class="header g-wrapper">
+    <header :class="['header', 'g-wrapper', {'header--scrolled': isScrolled}]">
         <span class="header__logo"><a href="#">QuePro</a></span>
         <nav>
             <NavigationList class="header__list"/>
@@ -27,13 +43,26 @@ export default {
         justify-content: space-between;
         align-items: center;
 
+        position: fixed;
+        width: 100%;
+        box-sizing: border-box;
+
         padding-top: 50px;
         padding-bottom: 50px;
 
-        height: 50px;
+        transition: .3s ease;
+
+        z-index: 1;
+    }
+
+    .header--scrolled {
+        background-color: var(--color-background-dark);
     }
 
     .header__logo a{
+        position: relative;
+        z-index: 1;
+
         color: var(--color-text-primary);
 
         font-family: var(--montserrat);
@@ -41,9 +70,6 @@ export default {
         font-size: 22px;
 
         text-wrap: nowrap;
-
-        position: relative;
-        z-index: 1;
     }
 
     .header__list {
@@ -65,8 +91,8 @@ export default {
         }
 
         .header {
-            padding-top: 40px;
-            padding-bottom: 40px;
+            padding-top: 35px;
+            padding-bottom: 35px;
         }
     }
 
@@ -79,8 +105,8 @@ export default {
 
     @media (max-width: 375px) {
         .header {
-            padding-top: 10px;
-            padding-bottom: 10px;
+            padding-top: 20px;
+            padding-bottom: 20px;
         }
 
         .header__logo {
