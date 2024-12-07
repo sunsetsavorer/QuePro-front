@@ -1,0 +1,26 @@
+html {
+    /* background-color: var(--color-background-dark); */
+    background-color: green;
+}
+
+.g-wrapper {
+    padding: 0 150px;
+}
+
+@media (max-width: 1240px) {
+    .g-wrapper {
+        padding: 0 70px;
+    }
+}
+
+@media (max-width: 768px) {
+    .g-wrapper {
+        padding: 0 50px;
+    }
+}
+
+@media (max-width: 375px) {
+    .g-wrapper {
+        padding: 0 20px;
+    }
+}
