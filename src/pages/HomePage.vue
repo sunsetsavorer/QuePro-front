@@ -1,7 +1,15 @@
 <script>
+// Api
+import { fetchNews } from '@/services/newsService';
+import { fetchTournamnents } from '@/services/tournamentService';
+
+// Components
 import HeroBlock from '@/components/HeroBlock.vue';
 import AboutSection from '@/components/AboutSection.vue';
 import PartnersSection from '@/components/PartnersSection.vue';
+import SliderSection from '@/components/SliderSection.vue';
+import NewsCard from '@/components/NewsCard.vue';
+import TournamentCard from '@/components/TournamentCard.vue';
 
 export default {
     name: 'HomePage',
@@ -9,6 +17,26 @@ export default {
         HeroBlock,
         AboutSection,
         PartnersSection,
+        SliderSection,
+        NewsCard,
+        TournamentCard,
+    },
+    mounted() {
+        this.fetch();
+    },
+    data() {
+        return {
+            NewsCardComponent: NewsCard,
+            TournamentCardComponent: TournamentCard,
+            news: null,
+            tournaments: null,
+        };
+    },
+    methods: {
+        async fetch() {
+            this.news = await fetchNews();
+            this.tournaments = await fetchTournamnents();
+        }
     }
 }
 </script>
@@ -46,6 +74,18 @@ export default {
                 '/src/assets/images/partners/spotify.svg',
                 '/src/assets/images/partners/microsoft.svg',
             ]"
+        />
+        <SliderSection
+            v-if="news"
+            title="Последние новости"
+            :sliderData="news"
+            :cardComponent="NewsCardComponent"
+        />
+        <SliderSection
+            v-if="tournaments"
+            title="Предстоящие турниры"
+            :sliderData="tournaments"
+            :cardComponent="TournamentCardComponent"
         />
     </div>
 </template>
