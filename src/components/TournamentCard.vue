@@ -38,6 +38,12 @@ export default {
         padding-top: 20px;
 
         background-color: #2e2e2e;
+
+        transition: .3s ease;
+    }
+
+    .tournament-card:hover {
+        transform: translateY(10px);
     }
 
     .tournament-card p {

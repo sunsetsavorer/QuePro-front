@@ -34,6 +34,12 @@ export default {
         width: 300px;
 
         background-color: #2E2E2E;
+
+        transition: .3s ease;
+    }
+
+    .news-card:hover {
+        transform: translateY(10px);
     }
 
     .news-card__texts {
