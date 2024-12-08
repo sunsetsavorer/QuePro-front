@@ -52,7 +52,7 @@ export default {
 
         transition: .3s ease;
 
-        z-index: 1;
+        z-index: 100;
     }
 
     .header--scrolled {
