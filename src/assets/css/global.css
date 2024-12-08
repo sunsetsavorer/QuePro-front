@@ -1,15 +1,29 @@
 html {
-    /* background-color: var(--color-background-dark); */
-    background-color: green;
+    background-color: var(--color-background-dark);
 }
 
 .g-wrapper {
     padding: 0 150px;
 }
 
+.g-title {
+    font-family: var(--montserrat);
+    color: var(--color-accent);
+    font-size: 44px;
+    font-weight: 700;
+}
+
+.g-title--dark {
+    color: var(--color-background-dark);
+}
+
 @media (max-width: 1240px) {
     .g-wrapper {
         padding: 0 70px;
+    }
+
+    .g-title {
+        font-size: 36px;
     }
 }
 
@@ -17,10 +31,18 @@ html {
     .g-wrapper {
         padding: 0 50px;
     }
+
+    .g-title {
+        font-size: 30px;
+    }
 }
 
 @media (max-width: 375px) {
     .g-wrapper {
         padding: 0 20px;
+    }
+
+    .g-title {
+        font-size: 24px;
     }
 }
