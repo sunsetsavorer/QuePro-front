@@ -29,7 +29,7 @@ export default {
 
 <template>
     <header :class="['header', 'g-wrapper', {'header--scrolled': isScrolled}]">
-        <span class="header__logo"><a href="#">QuePro</a></span>
+        <span class="header__logo"><a href="/">QuePro</a></span>
         <nav>
             <NavigationList class="header__list"/>
             <BurgerMenu class="header__burger"/>
