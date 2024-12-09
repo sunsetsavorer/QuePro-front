@@ -7,21 +7,30 @@ export default {
             required: true,
         },
     },
+    data() {
+        return {
+            slug: this.data.slug
+                ? `/news/${this.data.slug}`
+                : `/news`,
+        }
+    }
 }
 </script>
 
 <template>
-    <div class="news-card">
-        <div class="news-card__texts">
-            <p class="news-card__title">{{ data.title }}</p>
-            <p class="news-card__date">{{ data.publication_date }}</p>
+    <a :href="slug">
+        <div class="news-card">
+            <div class="news-card__texts">
+                <p class="news-card__title">{{ data.title }}</p>
+                <p class="news-card__date">{{ data.publication_date }}</p>
+            </div>
+            <img
+                class="news-card__image"
+                :src="data.picture_path"
+                alt="Картинка Новости"
+            >
         </div>
-        <img
-            class="news-card__image"
-            :src="data.picture_path"
-            alt="Картинка Новости"
-        >
-    </div>
+    </a>
 </template>
 
 <style scoped>
