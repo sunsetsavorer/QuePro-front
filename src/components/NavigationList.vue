@@ -8,7 +8,6 @@ export default {
     <ul class="navigation-list">
         <li><a href="">Новости</a></li>
         <li><a href="">Турниры</a></li>
-        <li><a href="">Контакты</a></li>
     </ul>
 </template>
 
