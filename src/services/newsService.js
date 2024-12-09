@@ -6,6 +6,7 @@ export const fetchNews = async (page = 1) => {
         return response.data.data;
     } catch (error) {
         console.log('Тут ошибка');
+        return false;
     }
 }
 
@@ -15,5 +16,6 @@ export const fetchNewsDetail = async (slug) => {
         return response.data.data;
     } catch (error) {
         console.log('Тут ошибка');
+        return false;
     }
 }

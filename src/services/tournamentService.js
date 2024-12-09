@@ -6,5 +6,6 @@ export const fetchTournamnents = async (page = 1) => {
         return response.data.data;
     } catch (error) {
         console.log('Тут ошибка');
+        return false;
     }
 }
