@@ -9,7 +9,6 @@ export default {
         <li><a href="">Новости</a></li>
         <li><a href="">Турниры</a></li>
         <li><a href="">Контакты</a></li>
-        <li><a href="">Личный кабинет</a></li>
     </ul>
 </template>
 
