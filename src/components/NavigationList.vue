@@ -7,7 +7,7 @@ export default {
 <template>
     <ul class="navigation-list">
         <li><a href="/news">Новости</a></li>
-        <li><a href="">Турниры</a></li>
+        <li><a href="/tournaments">Турниры</a></li>
     </ul>
 </template>
 
