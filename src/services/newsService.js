@@ -1,14 +1,19 @@
 import ApiClient from "./api";
 
 export const fetchNews = async (page = 1) => {
-    const response = await
-        ApiClient.get(`/news?page=${page}`)
-        .then(response => {
-            return response.data;
-        })
-        .catch(error => {
-            console.log(error);
-            return null;
-        });
-    return response.data;
+    try {
+        const response = await ApiClient.get(`/news?page=${page}`);
+        return response.data.data;
+    } catch (error) {
+        console.log('Тут ошибка');
+    }
+}
+
+export const fetchNewsDetail = async (slug) => {
+    try {
+        const response = await ApiClient.get(`/news/${slug}`);
+        return response.data.data;
+    } catch (error) {
+        console.log('Тут ошибка');
+    }
 }
