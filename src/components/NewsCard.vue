@@ -4,7 +4,12 @@ export default {
     props: {
         data: {
             type: Object,
-            required: true,
+            default: {
+                title: 'Киберновость',
+                publication_date: 'no-data',
+                slug: '',
+                picture_path: '/src/assets/images/mockups/news.png'
+            }
         },
     },
     data() {
@@ -18,18 +23,16 @@ export default {
 </script>
 
 <template>
-    <a :href="slug">
-        <div class="news-card">
-            <div class="news-card__texts">
-                <p class="news-card__title">{{ data.title }}</p>
-                <p class="news-card__date">{{ data.publication_date }}</p>
-            </div>
-            <img
-                class="news-card__image"
-                :src="data.picture_path"
-                alt="Картинка Новости"
-            >
+    <a :href="slug" class="news-card">
+        <div class="news-card__texts">
+            <p class="news-card__title">{{ data.title }}</p>
+            <p class="news-card__date">{{ data.publication_date }}</p>
         </div>
+        <img
+            class="news-card__image"
+            :src="data.picture_path"
+            alt="Картинка Новости"
+            >
     </a>
 </template>
 
@@ -44,11 +47,21 @@ export default {
 
         background-color: #2E2E2E;
 
+        overflow: hidden;
+
         transition: .3s ease;
     }
 
     .news-card:hover {
         transform: translateY(10px);
+    }
+
+    .news-card__image {
+        transition: .3s ease;
+    }
+
+    .news-card:hover .news-card__image {
+        transform: scale(1.1);
     }
 
     .news-card__texts {
