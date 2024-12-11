@@ -74,11 +74,11 @@ export default {
             'data-page',
             'g-wrapper',
             {
-                'data-page--empty': !data,
+                'data-page--empty': !data.length,
             }
         ]">
         <h1 class="g-title data-page__title">{{ title }}</h1>
-        <div v-if="data" class="data-page__content-wrapper">
+        <div v-if="data.length" class="data-page__content-wrapper">
             <component
                 :is="cardComponent"
                 class="data-page__data-card"
@@ -86,7 +86,7 @@ export default {
                 :data="item"
             />
         </div>
-        <div v-else-if="!data" class="data-page__content-preloader">
+        <div v-else-if="!data.length" class="data-page__content-preloader">
             <p class="g-title">
                 {{
                     isDataFetched
