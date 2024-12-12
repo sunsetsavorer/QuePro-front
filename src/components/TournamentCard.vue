@@ -11,12 +11,21 @@ export default {
         return {
             cardBackgroundColor: this.data.discipline.hex_color,
         }
-    }
+    },
+    methods: {
+        openPopup() {
+            this.$emit('openTournamentPopup');
+        },
+    },
 }
 </script>
 
 <template>
-    <div class="tournament-card" :style="{ backgroundColor: cardBackgroundColor }">
+    <div
+        class="tournament-card"
+        :style="{ backgroundColor: cardBackgroundColor }"
+        @click="openPopup"
+    >
         <img :src="data.discipline.icon_path" alt="Иконка игры">
         <p class="tournament-card__name">{{ data.name }}</p>
         <p class="tournament-card__prize-fund">{{ data.prize_fund + ' руб.' }}</p>
