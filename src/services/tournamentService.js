@@ -9,3 +9,25 @@ export const fetchTournamnents = async (page = 1) => {
         return false;
     }
 }
+
+export const registerForTournament = async (tournamentId, data) => {
+    try {
+        const response = await ApiClient
+            .post(
+                `/tournaments/${tournamentId}/entries`,
+                data,
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }
+            );
+
+        console.log(response);
+        return true;
+    } catch (error) {
+        console.log('Ошибка при отправке заявки на участие');
+
+        return false;
+    }
+}
