@@ -1,4 +1,5 @@
 <script>
+import TournamentEntryPopup from '@/components/TournamentEntryPopup.vue';
 
 export default {
     name: 'PaginationPage',
@@ -8,13 +9,18 @@ export default {
             data: [],
             isDataFetched: false,
             isFetchingPagination: false,
+            isPopupOpen: false,
+            selectedTournament: null,
         }
     },
+    components: {
+        TournamentEntryPopup,
+    },
     methods: {
-        async increasePage() {
+        increasePage() {
             this.page++;
         },
-        async decreasePage() {
+        decreasePage() {
             this.page--;
         },
         async fetchData() {
@@ -42,6 +48,13 @@ export default {
                 await this.fetchPagination();
             }
         },
+        openPopup(tournament) {
+            this.selectedTournament = tournament;            
+            this.isPopupOpen = true;
+        },
+        closePopup() {
+            this.isPopupOpen = false;
+        }
     },
     mounted() {
         this.fetchData();
@@ -64,7 +77,7 @@ export default {
             type: Function,
             required: true,
         },
-    }
+    },
 }
 </script>
 
@@ -77,6 +90,11 @@ export default {
                 'data-page--empty': !data.length,
             }
         ]">
+        <TournamentEntryPopup
+            v-if="isPopupOpen"
+            @close="closePopup"
+            :tournament="selectedTournament"
+        />
         <h1 class="g-title data-page__title">{{ title }}</h1>
         <div v-if="data.length" class="data-page__content-wrapper">
             <component
@@ -84,6 +102,7 @@ export default {
                 class="data-page__data-card"
                 v-for="(item, index) in data" :key="index"
                 :data="item"
+                @openTournamentPopup="openPopup(item)"
             />
         </div>
         <div v-else-if="!data.length" class="data-page__content-preloader">
@@ -118,9 +137,6 @@ export default {
     align-items: center;
 
     height: 100%;
-}
-
-.data-page__data-card {
 }
 
 .data-page__content-wrapper {

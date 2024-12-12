@@ -3,6 +3,10 @@
 import '@splidejs/vue-splide/css';
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 
+// Components
+import TournamentEntryPopup from './TournamentEntryPopup.vue';
+import { date } from 'yup';
+
 export default {
     name: 'SliderSection',
     props: {
@@ -18,18 +22,45 @@ export default {
             type: Object,
             required: true,
         },
+        isDataFetched: {
+            type: Boolean,
+            required: true,
+        }
+    },
+    data() {
+        return {
+            isPopupOpen: false,
+            selectedTournament: null,
+        }
     },
     components: {
         Splide,
         SplideSlide,
-    }
+        TournamentEntryPopup,
+    },
+    methods: {
+        openPopup(tournament) {
+            this.selectedTournament = tournament;
+            this.isPopupOpen = true;
+        },
+        closePopup() {
+            this.isPopupOpen = false;
+        }
+    },
 }
 </script>
 
 <template>
     <section class="slider-section g-wrapper">
+        <TournamentEntryPopup
+            v-if="isPopupOpen"
+            @close="closePopup"
+            :tournament="selectedTournament"
+        />
         <h2 class="g-title slider-section__title">{{ title }}</h2>
         <Splide
+            v-if="isDataFetched"
+            class="slider-section__slider"
             :options="{
                 rewind: true,
                 perPage: 5,
@@ -66,9 +97,16 @@ export default {
             }"
         >
         <SplideSlide v-for="(item, index) in sliderData" :key="index">
-            <component :is="cardComponent" :data="item"/>
+            <component
+                :is="cardComponent"
+                :data="item"
+                @openTournamentPopup="openPopup(item)"
+            />
         </SplideSlide>
         </Splide>
+        <div v-else class="slider-section__loading-container">
+            <p class="g-title">Загрузка...</p>
+        </div>
     </section>
 </template>
 
@@ -80,5 +118,12 @@ export default {
 
     .slider-section__title {
         margin-bottom: 30px;
+    }
+
+    .slider-section__loading-container {
+        min-height: 370px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 </style>
