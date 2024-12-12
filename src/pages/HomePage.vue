@@ -36,7 +36,7 @@ export default {
         async fetch() {
             this.news = await fetchNews();
             this.tournaments = await fetchTournamnents();
-        }
+        },
     }
 }
 </script>
@@ -76,16 +76,16 @@ export default {
             ]"
         />
         <SliderSection
-            v-if="news"
             title="Последние новости"
             :sliderData="news"
             :cardComponent="NewsCardComponent"
+            :isDataFetched="news"
         />
         <SliderSection
-            v-if="tournaments"
             title="Предстоящие турниры"
             :sliderData="tournaments"
             :cardComponent="TournamentCardComponent"
+            :isDataFetched="tournaments"
         />
     </div>
 </template>
